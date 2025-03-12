@@ -1,0 +1,6 @@
+
+base:
+  config:
+    myname: Hello World
+  boot:
+    value: 1234

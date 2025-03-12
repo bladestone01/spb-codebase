@@ -1,0 +1,99 @@
+globalConfig:
+  # 作者
+  author: bladestone
+  # 生成完是否打开
+  open: false
+  # 指定生成的主键的ID类型 默认值：null
+  idType: AUTO
+  # 时间类型对应策略 默认值：TIME_PACK
+  dateType: ONLY_DATE
+  # 是否在xml中添加二级缓存配置 默认值：false
+  enableCache: false
+  # 开启 ActiveRecord 模式 默认值：false
+  activeRecord: false
+  # 开启 BaseResultMap 默认值：false
+  baseResultMap: true
+  # 开启 baseColumnList 默认值：false
+  baseColumnList: true
+  # 开启 swagger2 模式 默认值：false
+  swagger2: false
+  # 是否覆盖已有文件 默认值：false
+  fileOverride: true
+  # service 命名方式 默认值：null(生成会带I前缀的接口名) 例如：%sService 生成 UserService
+  serviceName: "%sDao"
+dataSourceConfig:
+  # 数据库连接地址
+  url: jdbc:mysql://localhost:3306/webstore?useUnicode=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true
+  # 数据库驱动
+  driverName: com.mysql.cj.jdbc.Driver
+  # 数据库用户名
+  username: root
+  # 数据库密码
+  password: root1234
+packageConfig:
+  # 父包名。如果为空，将下面子包名必须写全部， 否则就只需写子包名
+  parent: org.bist.web.webstore
+  # 父包模块名
+  #  moduleName: api
+  # Entity包名
+  entity: dao.model
+  # Service包名
+  service: dao
+  # Service Impl包名
+  serviceImpl: dao.impl
+  # Mapper包名
+  mapper: mybatis.mapper
+  # Mapper XML包名
+  xml: mapper
+  # Controller包名
+  controller: controller
+  # 路径配置信息
+  pathInfo:
+    entity_path: ./src/main/resources/org/bistu/web/webstore/dao/entity
+    service_path: ./src/main/resources/org/bistu/web/webstore/service
+    service_impl_path: ./src/main/resources/org/bistu/web/webstore/service/impl
+    mapper_path: ./src/main/resources/org/bistu/web/webstore/dao/mapper
+    xml_path: ./src/main/resources/mybatis/mapper
+    controller_path: ./src/main/resources/org/bistu/web/webstore/controller
+# 是否生成下面文件 放开不生成 注释默认生成
+templateConfig:
+#  entity:
+#  service:
+#  serviceImpl:
+#  mapper:
+#  xml:
+#  controller:
+# 默认使用vm 需要哪个开启哪个 都不设置默认vm 建议使用vm 可以控制controller service model等是否生成
+#useftl: true
+#usebtl: true
+usevm: true
+strategyConfig:
+  # 数据库表映射到实体的命名策略
+  naming: underline_to_camel
+  # 数据库表字段映射到实体的命名策略, 未指定按照 naming 执行
+  columnNaming: underline_to_camel
+  # 【实体】是否为lombok模型（默认 false）
+  entityLombokModel: true
+  # 自定义继承的Mapper类全称，带包名
+  superMapperClass: com.baomidou.mybatisplus.core.mapper.BaseMapper
+  # 自定义继承的Service类全称，带包名
+  superServiceClass: com.baomidou.mybatisplus.extension.service.IService
+  # 自定义继承的ServiceImpl类全称，带包名
+  superServiceImplClass: com.baomidou.mybatisplus.extension.service.impl.DaoImpl
+  #superEntityClass: org.spb.code.base.BaseEntity
+  # 驼峰转连字符 false接口请求地址为驼峰 true的话会用-连接
+  controllerMappingHyphenStyle: false
+  # 生成 @RestController 控制器
+  restControllerStyle: true
+  # 表前缀
+  tablePrefix:
+    - tc_
+  # 是否生成实体时，生成字段注解
+  entityTableFieldAnnotationEnable: true
+  # 【实体】是否生成字段常量（默认 false)
+  entityColumnConstant: true
+  # 需要包含的表名，允许正则表达式（与exclude二选一配置MpCodeGeneratorConfig)
+  include:
+    - tc_user
+    - tc_product
+    - tc_buy_order

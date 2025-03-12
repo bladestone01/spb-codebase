@@ -1,0 +1,49 @@
+spring:
+  application:
+    name:  webstore
+  messages:
+    basename: classpath:i18n/messages
+    encoding: UTF-8
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    #username: mpw:3hzhQGiDZP+uiHRzcJ26gw==
+    password: root1234
+    url: jdbc:mysql://localhost:3306/spbcourse?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+    #url: jdbc:p6spy:mysql://localhost:3306/bistu_data?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+    #driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+
+# port
+server:
+  port: 8083
+
+
+logging:
+  config: classpath:config/log4j2.xml
+  level:
+    root: INFO
+    org.springframework.web: info
+    org.spb.test: info
+
+mybatis-plus:
+  mapper-locations: classpath*:mybatis/mapper/*.xml
+  type-aliases-package: org.bistu.web.webstore.dao.model
+  global-config:
+    db-config:
+      id-type: auto
+      column-underline: true
+      db-column-underline: true
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      db-type: mysql
+      logic-delete-field: valid
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-enums-package: org.bistu.web.webstore.consts
+  mapper-default-scope: org/bistu/web/webstore/dao/mapper/**/*Mapper
+   #type-handlers-package: com.baomidou.mybatisplus.extension.handlers,org.spb.course.dao.mybatis.handler
+
+
+
+
