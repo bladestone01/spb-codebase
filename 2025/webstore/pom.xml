@@ -90,52 +90,6 @@
             <version>2.4.2</version>
         </dependency>
 
-        <!-- mybatis plus in spring boot starter -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-            <version>${mybatis.plus.version}</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-core</artifactId>-->
-<!--            <version>${mybatis.plus.version}</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-annotation</artifactId>
-            <version>${mybatis.plus.version}</version>
-        </dependency>
-
-        <!-- mysql driver -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version> <!-- 请根据需要选择合适的版本 -->
-        </dependency>
-
-        <!-- Orika -->
-        <dependency>
-            <groupId>dev.akkinoc.spring.boot</groupId>
-            <artifactId>orika-spring-boot-starter</artifactId>
-            <version>${orika-spring-boot-starter.version}</version>
-        </dependency>
-
-        <!-- Apache Commons Collections4 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>${apache.common.collection.version}</version>
-        </dependency>
-
-
-        <!-- MyBatis Code Generator  UI -->
-<!--        <dependency>-->
-<!--            <groupId>com.github.davidfantasy</groupId>-->
-<!--            <artifactId>mybatis-plus-generator-ui</artifactId>-->
-<!--            <version>2.0.5</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -168,17 +122,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!-- mybatis-plus generator 自动生成代码插件 -->
-            <plugin>
-                <groupId>org.fish.fly</groupId>
-                <artifactId>mybatis-plus-generator-maven-plugin</artifactId>
-                <version>1.0.1-RELEASE</version>
-                <configuration>
-                    <configurationFile>${basedir}/src/main/resources/generator/mp-code-generator-config.yml
-                    </configurationFile>
-                </configuration>
-            </plugin>
-            <!-- mybatis-plus generator 自动生成代码插件 -->
         </plugins>
     </build>
 

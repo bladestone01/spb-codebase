@@ -6,14 +6,33 @@ import java.util.List;
 
 public interface IProductService {
 
-    /**
-     * 获取所有的记录。
-     *
-     * @return
-     */
-    public List<ProductBo> getOnes();
-
     public ProductBo getOne(Long id);
 
-    public List<ProductBo> getOnesByPrice(float price);
+    public List<ProductBo> getOnes();
+
+    /**
+     * 基于价格进行查询.
+     *
+     * @param price
+     * @return
+     */
+
+    public List<ProductBo> getOnes(Float price);
+
+
+    public ProductBo createOne(ProductBo productBo);
+
+    /**
+     *
+     * @param name
+     * @param description
+     * @param price
+     * @return
+     */
+    public ProductBo createOne(String name, String description, float price);
+
+    public ProductBo udpateOne(Long id, ProductBo productBo);
+
+
+    public ProductBo deleteOne(Long id);
 }

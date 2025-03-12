@@ -1,4 +1,4 @@
-package org.bistu.web.webstore.dao.repository;
+package org.bistu.web.dao.repository;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.bistu.web.webstore.dao.entity.User;

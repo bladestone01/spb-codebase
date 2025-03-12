@@ -1,18 +1,18 @@
 /*
  * create by mybatis-plus-generator  https://github.com/xiweile
  */
-package org.bistu.web.webstore.dao.entity;
+package org.bistu.web.dao.entity;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -25,8 +25,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("tc_product")
-public class Product implements Serializable {
+@TableName("tc_user")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,22 +34,22 @@ public class Product implements Serializable {
     private Long id;
 
     /**
-     * 产品名称
+     * 姓名
      */
     @TableField("name")
     private String name;
 
     /**
-     * 描述信息
+     * 年龄
      */
-    @TableField("description")
-    private String description;
+    @TableField("age")
+    private Integer age;
 
     /**
-     * 价格信息
+     * 出生年月日
      */
-    @TableField("price")
-    private BigDecimal price;
+    @TableField("birth_date")
+    private Date birthDate;
 
     @TableField("created_time")
     private Date createdTime;
@@ -71,9 +71,9 @@ public class Product implements Serializable {
 
     public static final String NAME = "name";
 
-    public static final String DESCRIPTION = "description";
+    public static final String AGE = "age";
 
-    public static final String PRICE = "price";
+    public static final String BIRTH_DATE = "birth_date";
 
     public static final String CREATED_TIME = "created_time";
 

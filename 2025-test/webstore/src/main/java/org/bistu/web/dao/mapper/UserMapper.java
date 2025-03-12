@@ -1,10 +1,10 @@
 /*
  * create by mybatis-plus-generator  https://github.com/xiweile
  */
-package org.bistu.web.webstore.dao.mapper;
+package org.bistu.web.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.bistu.web.webstore.dao.entity.Product;
+import org.bistu.web.webstore.dao.entity.User;
 
 /**
  * <p>
@@ -14,6 +14,6 @@ import org.bistu.web.webstore.dao.entity.Product;
  * @author bladestone
  * @since 2025-03-12
  */
-public interface ProductMapper extends BaseMapper<Product> {
+public interface UserMapper extends BaseMapper<User> {
 
 }

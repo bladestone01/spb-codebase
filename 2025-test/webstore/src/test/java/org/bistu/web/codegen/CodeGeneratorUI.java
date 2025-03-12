@@ -1,4 +1,4 @@
-package org.bistu.web.webstore.codegenerator;
+package org.bistu.web.codegen;
 
 //import com.github.davidfantasy.mybatisplus.generatorui.GeneratorConfig;
 //import com.github.davidfantasy.mybatisplus.generatorui.MybatisPlusToolsApplication;

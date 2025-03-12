@@ -1,17 +1,18 @@
 /*
  * create by mybatis-plus-generator  https://github.com/xiweile
  */
-package org.bistu.web.webstore.dao.entity;
+package org.bistu.web.dao.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -24,8 +25,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("tc_user")
-public class User implements Serializable {
+@TableName("tc_buy_order")
+public class BuyOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,22 +34,34 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 姓名
+     * 购买用户ID
      */
-    @TableField("name")
-    private String name;
+    @TableField("user_id")
+    private Long userId;
 
     /**
-     * 年龄
+     * 商品ID
      */
-    @TableField("age")
-    private Integer age;
+    @TableField("product_id")
+    private Long productId;
 
     /**
-     * 出生年月日
+     * 购买时间
      */
-    @TableField("birth_date")
-    private Date birthDate;
+    @TableField("buy_time")
+    private Date buyTime;
+
+    /**
+     * 购买数量
+     */
+    @TableField("item_number")
+    private Integer itemNumber;
+
+    /**
+     * 购买地址
+     */
+    @TableField("location")
+    private String location;
 
     @TableField("created_time")
     private Date createdTime;
@@ -68,11 +81,15 @@ public class User implements Serializable {
 
     public static final String ID = "id";
 
-    public static final String NAME = "name";
+    public static final String USER_ID = "user_id";
 
-    public static final String AGE = "age";
+    public static final String PRODUCT_ID = "product_id";
 
-    public static final String BIRTH_DATE = "birth_date";
+    public static final String BUY_TIME = "buy_time";
+
+    public static final String ITEM_NUMBER = "item_number";
+
+    public static final String LOCATION = "location";
 
     public static final String CREATED_TIME = "created_time";
 

@@ -1,7 +1,6 @@
-package org.bistu.web.webstore.dao.repository;
+package org.bistu.web.dao.repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.bistu.web.webstore.dao.entity.Product;

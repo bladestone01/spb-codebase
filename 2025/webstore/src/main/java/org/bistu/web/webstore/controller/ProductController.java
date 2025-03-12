@@ -50,7 +50,7 @@ public class ProductController {
     public ResultInfo<List<ProductBo>> getProductByParams(@PathVariable Long id,
                   @RequestParam(name = "price", required=false, defaultValue = "0.0") float price)  {
         log.info("Get Producgts By Params, id:{}, price:{}", id, price);
-        List<ProductBo> productBoList = this.productService.getOnesByPrice(price);
+        List<ProductBo> productBoList = this.productService.getOnes(price);
         log.info("Query Product Bos:{}", productBoList);
 
         return ResultInfo.success(productBoList);

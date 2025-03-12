@@ -1,7 +1,7 @@
 /*
  * create by mybatis-plus-generator  https://github.com/xiweile
  */
-package org.bistu.web.webstore.dao.mapper;
+package org.bistu.web.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.bistu.web.webstore.dao.entity.BuyOrder;
