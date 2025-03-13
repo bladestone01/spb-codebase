@@ -1,8 +1,8 @@
 package org.bistu.web.dao.repository;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.bistu.web.webstore.dao.entity.BuyOrder;
-import org.bistu.web.webstore.dao.mapper.BuyOrderMapper;
+import org.bistu.web.dao.entity.BuyOrder;
+import org.bistu.web.dao.mapper.BuyOrderMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository

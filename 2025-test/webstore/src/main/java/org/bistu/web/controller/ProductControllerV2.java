@@ -54,10 +54,11 @@ public class ProductControllerV2 {
         return ResultInfo.success(productBo);
     }
 
+
     @GetMapping("/products/{id}/params")
     public ResultInfo<List<ProductBo>> getProductByParams(@PathVariable Long id, @RequestParam(name = "price", required=false, defaultValue = "0.0") float price)  {
         log.info("Get Producgts By Params, id:{}, price:{}", id, price);
-        List<ProductBo> productBoList = this.productService.getOnes(price);
+        List<ProductBo> productBoList = this.productService.getOnesByPrice(price);
         log.info("Query Product Bos:{}", productBoList);
 
         return ResultInfo.success(productBoList);
@@ -73,7 +74,7 @@ public class ProductControllerV2 {
     @GetMapping("/products/simple/{id}/params")
     public ResultInfo<List<ProductBo>> getProductSimpleByParams(@PathVariable Long id, Float price)  {
         log.info("Get Producgts By Params, id:{}, price:{}", id, price);
-        List<ProductBo> productBoList = this.productService.getOnes(price);
+        List<ProductBo> productBoList = this.productService.getOnesByPrice(price);
         log.info("Query Product Bos:{}", productBoList);
 
         return ResultInfo.success(productBoList);
@@ -112,10 +113,10 @@ public class ProductControllerV2 {
 
 
     @PutMapping("/products/{id}")
-    public ResultInfo<ProductBo> updateProduct(@PathVariable Long id, ProductBo productBo) {
+    public ResultInfo<ProductBo> updateProduct(@PathVariable Long id, @RequestBody ProductBo productBo) {
         log.info("updateProduct:{}", productBo);
 
-        ProductBo updateProductBo = this.productService.udpateOne(id, productBo);
+        ProductBo updateProductBo = this.productService.updateOne(id, productBo);
         log.info("re-update ProductBo:{}", updateProductBo);
 
         return ResultInfo.success(updateProductBo);
@@ -125,7 +126,7 @@ public class ProductControllerV2 {
     public ResultInfo<ProductBo> updateJsonProduct(@PathVariable Long id, @RequestBody ProductBo productBo) {
         log.info("updateProduct:{}", productBo);
 
-        ProductBo updateProductBo = this.productService.udpateOne(id, productBo);
+        ProductBo updateProductBo = this.productService.updateOne(id, productBo);
         log.info("Updated ProductBo:{}", updateProductBo);
 
         log.info("re-update ProductBo:{}", updateProductBo);
@@ -137,9 +138,9 @@ public class ProductControllerV2 {
     public ResultInfo<ProductBo> deleteProduct(@PathVariable Long id) {
         log.info("deleteProduct:{}", id);
 
-        ProductBo deleteProductBo = this.productService.deleteOne(id);
-        log.info("Deleted ProductBo:{}", deleteProductBo);
+        Boolean resultStatus = this.productService.deleteOne(id);
+        log.info("Deleted ProductBo:{}", resultStatus);
 
-        return ResultInfo.success(deleteProductBo);
+        return ResultInfo.success(resultStatus);
     }
 }

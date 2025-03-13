@@ -4,7 +4,7 @@
 package org.bistu.web.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.bistu.web.webstore.dao.entity.User;
+import org.bistu.web.dao.entity.User;
 
 /**
  * <p>

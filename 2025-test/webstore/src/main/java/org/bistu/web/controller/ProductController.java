@@ -1,5 +1,6 @@
 package org.bistu.web.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.bistu.web.consts.StatusCodeEnum;

@@ -32,29 +32,29 @@ dataSourceConfig:
   password: root1234
 packageConfig:
   # 父包名。如果为空，将下面子包名必须写全部， 否则就只需写子包名
-  parent: org.bist.web.webstore
+  parent: org.bistu.web
   # 父包模块名
   #  moduleName: api
   # Entity包名
-  entity: dao.model
+  entity: dao.entity
   # Service包名
   service: dao
   # Service Impl包名
   serviceImpl: dao.impl
   # Mapper包名
-  mapper: mybatis.mapper
+  mapper: dao.mapper
   # Mapper XML包名
   xml: mapper
   # Controller包名
   controller: controller
   # 路径配置信息
   pathInfo:
-    entity_path: ./src/main/resources/org/bistu/web/webstore/dao/entity
-    service_path: ./src/main/resources/org/bistu/web/webstore/service
-    service_impl_path: ./src/main/resources/org/bistu/web/webstore/service/impl
-    mapper_path: ./src/main/resources/org/bistu/web/webstore/dao/mapper
+    entity_path: ./src/main/resources/org/bistu/web/dao/entity
+    service_path: ./src/main/resources/org/bistu/web/service
+    service_impl_path: ./src/main/resources/org/bistu/web/service/impl
+    mapper_path: ./src/main/resources/org/bistu/web/dao/mapper
     xml_path: ./src/main/resources/mybatis/mapper
-    controller_path: ./src/main/resources/org/bistu/web/webstore/controller
+    controller_path: ./src/main/resources/org/bistu/web/controller
 # 是否生成下面文件 放开不生成 注释默认生成
 templateConfig:
 #  entity:
@@ -97,3 +97,4 @@ strategyConfig:
     - tc_user
     - tc_product
     - tc_buy_order
+    - school_info

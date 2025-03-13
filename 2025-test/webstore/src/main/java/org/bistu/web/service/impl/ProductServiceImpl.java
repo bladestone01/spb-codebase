@@ -1,86 +1,136 @@
 package org.bistu.web.service.impl;
 
-import jakarta.annotation.PostConstruct;
+import cn.hutool.core.bean.copier.CopyOptions;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import ma.glasnost.orika.MapperFactory;
+import org.bistu.web.dao.entity.Product;
+import org.bistu.web.dao.repository.ProductRepo;
 import org.bistu.web.domain.ProductBo;
 import org.bistu.web.service.IProductService;
+import org.bistu.web.utils.BeanUtil;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Slf4j
 public class ProductServiceImpl implements IProductService {
-    private Map<Long, ProductBo> productsMap = new java.util.concurrent.ConcurrentHashMap<Long, ProductBo>();
+    @Autowired
+    private ProductRepo productRepo;
 
-    @PostConstruct
-    public void init() {
-        ProductBo productBo1 = ProductBo.create();
-        productsMap.put(productBo1.getId(), productBo1);
+    @Override
+    public List<ProductBo> getOnes() {
+        List<Product> productList = productRepo.list();
 
-        ProductBo productBo2 = ProductBo.create();
-        productsMap.put(productBo2.getId(), productBo2);
+        List<ProductBo> productBos =  BeanUtil.copyListProperties(productList, ProductBo.class);
+        log.info("Get All Products:{}",productBos);
 
-        ProductBo productBo3 = ProductBo.create();
-        productsMap.put(productBo3.getId(), productBo3);
-
-        log.info("product bo list is initialized....");
+        return productBos;
     }
 
     @Override
     public ProductBo getOne(Long id) {
-        ProductBo productBo = productsMap.get(id);
+        Optional<Product> productOpt =  this.productRepo.getOptById(id);
+        ProductBo productBo = null;
+        if (productOpt.isPresent()) {
+            productBo = BeanUtil.copyProperties(productOpt.get(), ProductBo.class);
+        }
+        log.info("ProductBo :{} by ID:{}", productBo, id);
 
         return productBo;
     }
 
     @Override
-    public List<ProductBo> getOnes() {
-        List<ProductBo> productBoList = productsMap.values().stream().toList();
+    public List<ProductBo> getOnesByPrice(float price) {
+        List<Product> productList = productRepo.listByPrice(price);
+        List<ProductBo> productBoList = BeanUtil.copyListProperties(productList, ProductBo.class);
+
+        log.info("Get Ones: {} By Price {}", productBoList, price);
 
         return productBoList;
     }
 
     @Override
-    public List<ProductBo> getOnes(Float price) {
-        log.info("Get Ones By Price:{}", price);
-        List<ProductBo> productBoList = productsMap.values().stream().filter(productBo -> productBo.getPrice() > price).toList();
+    public List<ProductBo> getOneByNameLike(String name) {
+        List<Product> productList = productRepo.listByName(name);
+        List<ProductBo> productBoList = BeanUtil.copyListProperties(productList, ProductBo.class);
 
         return productBoList;
-    }
-
-    @Override
-    public ProductBo createOne(ProductBo productBo) {
-        ProductBo newProductBo = ProductBo.create(productBo.getName(), productBo.getDescription(), productBo.getPrice());
-        productsMap.put(productBo.getId(), productBo);
-
-        return productBo;
     }
 
     @Override
     public ProductBo createOne(String name, String description, float price) {
-        ProductBo newProductBo = ProductBo.create(name, description, price);
-        productsMap.put(newProductBo.getId(), newProductBo);
+        return null;
+    }
+
+    @Override
+    public ProductBo createOne(ProductBo productBo) {
+        Product product = BeanUtil.copyProperties(productBo, Product.class);
+        productRepo.save(product);
+        ProductBo newProductBo = BeanUtil.copyProperties(product, ProductBo.class);
+        log.info("New Created ProductBo:{}", newProductBo);
 
         return newProductBo;
     }
 
-
     @Override
-    public ProductBo udpateOne(Long id, ProductBo productBo) {
-        ProductBo updateProductBo = productsMap.get(id);
-        updateProductBo.setPrice(productBo.getPrice());
-        updateProductBo.setDescription(productBo.getDescription());
-        updateProductBo.setName(productBo.getName());
+    public ProductBo updateOne(Long id, ProductBo productBo) {
+        Product sourceProduct = BeanUtil.copyProperties(productBo, Product.class);
+        Product targetProduct = this.productRepo.getById(id);
 
-        return updateProductBo;
+        cn.hutool.core.bean.BeanUtil.copyProperties(sourceProduct, targetProduct, CopyOptions.create().ignoreNullValue());
+
+        this.productRepo.updateById(targetProduct);
+
+        return BeanUtil.copyProperties(targetProduct, ProductBo.class);
     }
 
     @Override
-    public ProductBo deleteOne(Long id) {
-        ProductBo deleteProductBo = productsMap.remove(id);
+    public Boolean deleteOne(Long id) {
+        return this.productRepo.removeById(id);
+    }
 
-        return deleteProductBo;
+    /**
+     *  Custom MyBatis Method
+     */
+    @Override
+    public int updateCustomByName(ProductBo productBo) {
+        log.info("Update Custom by Name,  productBo:{}", productBo);
+        Product product = BeanUtil.copyProperties(productBo, Product.class);
+        return this.productRepo.updateByName(product);
+    }
+
+    @Override
+    public boolean deleteCustomByName(String name,  Boolean logicFlag) {
+        log.info("delete Action, name:{}, logicFlag:{}", name, logicFlag);
+        int count = logicFlag? this.productRepo.logicDeleteByName(name) : this.productRepo.deleteByName(name);
+        log.info("delete count:{}", count);
+        return count > 0;
+    }
+
+    @Override
+    public ProductBo createCustomOne(ProductBo productBo) {
+        return this.createOne(productBo);
+    }
+
+    @Override
+    public IPage<ProductBo> getOnesByPageable(Integer pageNo, Integer pageSize, ProductBo queryProductBo) {
+        IPage<Product> page = new Page<>(pageNo, pageSize);
+
+        IPage<Product> productIPage = this.productRepo.queryByPageable(page, queryProductBo);
+
+        List<Product> productList = productIPage.getRecords();
+        List<ProductBo> productBoList = BeanUtil.copyListProperties(productList, ProductBo.class);
+
+        return new Page<ProductBo>()
+                    .setRecords(productBoList)
+                    .setTotal(productIPage.getTotal())
+                    .setSize(productIPage.getSize())
+                    .setCurrent(productIPage.getCurrent());
     }
 }

@@ -3,8 +3,15 @@
  */
 package org.bistu.web.dao.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.bistu.web.webstore.dao.entity.Product;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import org.apache.ibatis.annotations.Param;
+import org.bistu.web.dao.entity.Product;
+
+import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * <p>
@@ -15,5 +22,4 @@ import org.bistu.web.webstore.dao.entity.Product;
  * @since 2025-03-12
  */
 public interface ProductMapper extends BaseMapper<Product> {
-
 }
