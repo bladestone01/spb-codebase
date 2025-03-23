@@ -1,5 +1,6 @@
 package org.bistu.web.webstore.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.bistu.web.webstore.domain.ProductBo;
 
 import java.util.List;
@@ -31,8 +32,23 @@ public interface IProductService {
      */
     public ProductBo createOne(String name, String description, float price);
 
-    public ProductBo udpateOne(Long id, ProductBo productBo);
+    public boolean updateOne(Long id, ProductBo productBo);
 
 
-    public ProductBo deleteOne(Long id);
+    public boolean deleteOne(Long id);
+
+
+    /**
+     * User Custom XML Operation
+     */
+    /**
+     *  Custom MyBatis Method
+     */
+    public List<ProductBo> getOneByNameLike(String name);
+    public int updateCustomByName(ProductBo productBo);
+    public boolean deleteCustomByName(String name, Boolean logicFlag);
+    public ProductBo createCustomOne(ProductBo productBo);
+
+
+    public IPage<ProductBo> getOnesByPageable(Integer pageNo, Integer pageSize, ProductBo productBo);
 }

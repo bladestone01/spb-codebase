@@ -9,7 +9,7 @@ spring:
     username: root
     #username: mpw:3hzhQGiDZP+uiHRzcJ26gw==
     password: root1234
-    url: jdbc:mysql://localhost:3306/spbcourse?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/webstore?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
     #url: jdbc:p6spy:mysql://localhost:3306/bistu_data?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
     #driver-class-name: com.p6spy.engine.spy.P6SpyDriver
 
@@ -26,7 +26,7 @@ logging:
     org.spb.test: info
 
 mybatis-plus:
-  mapper-locations: classpath*:mybatis/mapper/*.xml
+  mapper-locations: classpath*:mybatis/mapper/**/*.xml
   type-aliases-package: org.bistu.web.webstore.dao.model
   global-config:
     db-config:
@@ -34,8 +34,8 @@ mybatis-plus:
       column-underline: true
       db-column-underline: true
       table-underline: true
-      logic-delete-value: 1
-      logic-not-delete-value: 0
+      logic-delete-value: 0
+      logic-not-delete-value: 1
       db-type: mysql
       logic-delete-field: valid
   configuration:

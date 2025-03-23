@@ -8,7 +8,8 @@ public enum StatusCodeEnum {
     FAILURE(10000,  "failure"),
 
     //10000 ~ 11000: 系统级错误码
-    INTERNAL_ERROR(10001, "未知系统错误");
+    INTERNAL_ERROR(10001, "未知系统错误"),
+    INVALID_PRODUCT_ID(10002, "无效的商品ID");
 
     private Integer code;
     private String message;
